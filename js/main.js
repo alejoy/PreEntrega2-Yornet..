@@ -14,12 +14,13 @@ function calcular() {
 //console.log(tna)
   const deposito = document.getElementById("capital").value;
   const duracion = document.getElementById("duracion").value;
-   
-    if(deposito!='' && duracion!=''){
-    const cap = deposito * (1 + tna * (duracion / 365));
-    const interes =  cap - deposito;
-      if (deposito >= 1000) {
-        let result = '$' + cap.toFixed(2);
+  const dangerCapital = document.getElementById("capital");
+  const dangerDuracion = document.getElementById("duracion");
+  const cap = deposito * (1 + tna * (duracion / 365));
+  const interes =  cap - deposito;  
+if (deposito >=1000)
+    if (duracion>=30 && duracion<=365){
+      let result = '$' + cap.toFixed(2);
         document.getElementById("calc_result").innerHTML = result;
         let calc_interes = '$' + interes.toFixed(2);
         document.getElementById("calc_interes").innerHTML = calc_interes;
@@ -31,20 +32,20 @@ function calcular() {
         document.getElementById("calc_error").innerHTML = calc_error;
         let tasa = 100 * tna + '%';
         document.getElementById("tna").innerHTML = tasa;
-          }           
-          else {
-            alert("menos mil") 
-            calc_error = 'Ingrese valor mayor a $1000';
-            document.getElementById("calc_error").innerHTML = calc_error;
-          }
-      if(duracion <'30' || duracion>'365'){
-        calc_error = 'Ingrese un valor de días mayor a 30 o menor a 365';
+        dangerDuracion.classList.remove("danger");
+        dangerCapital.classList.remove("danger");
+    }
+    else
+    {
+      calc_error = 'Ingrese un valor de días mayor a 30 o menor a 365';
+      document.getElementById("calc_error").innerHTML = calc_error;
+      dangerDuracion.classList.add("danger");
+
+      }
+      else {
+        calc_error = 'Ingrese valor mayor a $1000';
         document.getElementById("calc_error").innerHTML = calc_error;
-        } else {
-          calc_error = '';
-        }
-    }
-    else {
-      calc_error = 'Debe ingresar un valor en los campos solicitados';
-    }
+        dangerCapital.classList.add("danger");
+      } 
+  
 }
