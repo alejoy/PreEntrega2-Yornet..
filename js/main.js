@@ -1,23 +1,28 @@
 function calcular() {
   //const app = document.getElementById("simulador");
+  const tnaA = [];
   const bancos = document.querySelector('input[name="banco"]:checked').value;
-  let tna = 78/100;
-  //console.log(tna)
+  let tna = 91/100;
+  
   if (bancos==1){
-  tna = 78 / 100;}
+  tna = 91 / 100;
+  tnaA.splice (1,0,tna)}
   if (bancos==2){
-  tna = 77 / 100;}
+  tna = 90 / 100;
+  tnaA.splice (2,0,tna) 
+ }
   if (bancos==3)
-  {tna = 79 / 100;}
+  {tna = 89 / 100;
+  tnaA.splice (3,0,tna)
+   }
 
-//console.log(bancos)
-//console.log(tna)
   const deposito = document.getElementById("capital").value;
   const duracion = document.getElementById("duracion").value;
   const dangerCapital = document.getElementById("capital");
   const dangerDuracion = document.getElementById("duracion");
-  const cap = deposito * (1 + tna * (duracion / 365));
+  const cap = multiplicar(deposito,(sumar(1, (multiplicar(tnaA,(duracion / 365))))));
   const interes =  cap - deposito;  
+
 if (deposito >=1000)
     if (duracion>=30 && duracion<=365){
       let result = '$' + cap.toFixed(2);
@@ -30,7 +35,7 @@ if (deposito >=1000)
         document.getElementById("monto").innerHTML = monto;
         let calc_error = "";
         document.getElementById("calc_error").innerHTML = calc_error;
-        let tasa = 100 * tna + '%';
+        let tasa = multiplicar(100, tnaA) + '%';
         document.getElementById("tna").innerHTML = tasa;
         dangerDuracion.classList.remove("danger");
         dangerCapital.classList.remove("danger");
@@ -49,3 +54,20 @@ if (deposito >=1000)
       } 
   
 }
+
+
+function sumar(sum1, sum2)
+{
+    let resultado;
+    resultado = sum1 + sum2;
+    return resultado;
+}
+
+function multiplicar(mult1, mult2)
+{
+    let resultado;
+    resultado = mult1 * mult2;
+    return resultado;
+}
+
+
