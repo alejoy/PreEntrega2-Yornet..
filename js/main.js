@@ -1,3 +1,4 @@
+let simulacion = new Object();
 function calcular() {
   //const app = document.getElementById("simulador");
   const tnaA = [];
@@ -53,6 +54,10 @@ if (deposito >=1000)
         dangerCapital.classList.add("danger");
       } 
   
+      simulacion = { plazo: this.dias.innerHTML, capital: this.monto.innerHTML, 
+        interses: this.calc_interes.innerHTML, monto: this.calc_result.innerHTML, tna: this.tna.innerHTML }
+      console.log(simulacion)
+      
 }
 
 
@@ -71,3 +76,7 @@ function multiplicar(mult1, mult2)
 }
 
 
+function enviarcot() {
+  
+  alert(JSON.stringify(simulacion));
+}
