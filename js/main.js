@@ -1,10 +1,10 @@
-let simulacion = new Object();
-function calcular() {
+//let simulacion = new Object();
   //const app = document.getElementById("simulador");
   const tnaA = [];
-  const bancos = document.querySelector('input[name="banco"]:checked').value;
+ // const bancos = document.querySelector('input[name="banco"]:checked').value;
+  const bancos =  prompt("Ingresa el banco de su preferencia 1, 2 o 3");
   let tna = 91/100;
-  
+
   if (bancos==1){
   tna = 91 / 100;
   tnaA.splice (1,0,tna)}
@@ -17,48 +17,65 @@ function calcular() {
   tnaA.splice (3,0,tna)
    }
 
-  const deposito = document.getElementById("capital").value;
-  const duracion = document.getElementById("duracion").value;
-  const dangerCapital = document.getElementById("capital");
-  const dangerDuracion = document.getElementById("duracion");
+  //const deposito = document.getElementById("capital").value;
+  const deposito = prompt("Ingresa el capital a invertir");
+  //const duracion = document.getElementById("duracion").value;
+  const duracion = prompt("Ingresa el tiempo para tu plazo fijo");
+ // const dangerCapital = document.getElementById("capital");
+ // const dangerDuracion = document.getElementById("duracion");
   const cap = multiplicar(deposito,(sumar(1, (multiplicar(tnaA,(duracion / 365))))));
-  const interes =  cap - deposito;  
+  const interes =  cap - deposito; 
+  console.log (duracion) 
 
 if (deposito >=1000)
     if (duracion>=30 && duracion<=365){
       let result = '$' + cap.toFixed(2);
-        document.getElementById("calc_result").innerHTML = result;
+        //document.getElementById("calc_result").innerHTML = result;
         let calc_interes = '$' + interes.toFixed(2);
-        document.getElementById("calc_interes").innerHTML = calc_interes;
+        //document.getElementById("calc_interes").innerHTML = calc_interes;
         let dias = duracion + " dias";
-        document.getElementById("dias").innerHTML = dias;  
+        //document.getElementById("dias").innerHTML = dias;  
         let monto = '$' + deposito;
-        document.getElementById("monto").innerHTML = monto;
+        //document.getElementById("monto").innerHTML = monto;
         let calc_error = "";
-        document.getElementById("calc_error").innerHTML = calc_error;
+        //document.getElementById("calc_error").innerHTML = calc_error;
         let tasa = multiplicar(100, tnaA) + '%';
-        document.getElementById("tna").innerHTML = tasa;
-        dangerDuracion.classList.remove("danger");
-        dangerCapital.classList.remove("danger");
+        //document.getElementById("tna").innerHTML = tasa;
+        //dangerDuracion.classList.remove("danger");
+        //dangerCapital.classList.remove("danger");
+        alert("Monto Total " + result
+            + " Plazo " + dias
+            + " Capital " + monto
+            + " Tasa " + tasa 
+            + " Intereses " + calc_interes
+            );
     }
     else
     {
       calc_error = 'Ingrese un valor de días mayor a 30 o menor a 365';
-      document.getElementById("calc_error").innerHTML = calc_error;
-      dangerDuracion.classList.add("danger");
+      alert(calc_error);
+      //document.getElementById("calc_error").innerHTML = calc_error;
+      //dangerDuracion.classList.add("danger");
 
       }
       else {
         calc_error = 'Ingrese valor mayor a $1000';
-        document.getElementById("calc_error").innerHTML = calc_error;
-        dangerCapital.classList.add("danger");
+        alert(calc_error);
+        //document.getElementById("calc_error").innerHTML = calc_error;
+        //dangerCapital.classList.add("danger");
       } 
-  
-      simulacion = { plazo: this.dias.innerHTML, capital: this.monto.innerHTML, 
-        interses: this.calc_interes.innerHTML, monto: this.calc_result.innerHTML, tna: this.tna.innerHTML }
-      console.log(simulacion)
       
-}
+function simul (plazo, capital, interses,total,tna) {
+        this.plazo = plazo;
+        this.capital = capital;
+        this.interses = interses;
+        this.total = total;
+        this.tna = tna;
+      }
+      const simulacion = new simul(duracion, deposito, interes,cap, tnaA[0]);
+      
+      console.log(simulacion);
+      
 
 
 function sumar(sum1, sum2)
@@ -76,7 +93,7 @@ function multiplicar(mult1, mult2)
 }
 
 
-function enviarcot() {
+//function enviarcot() {
   
-  alert(JSON.stringify(simulacion));
-}
+ // alert(JSON.stringify(simulacion));
+//}

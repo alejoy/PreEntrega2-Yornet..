@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulador de Plazos Fijos">
+    <meta name="author" content="Alejo Yornet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">   
+    <title>Simulador de Plazo Fijo</title>
+</head>
+<body>
+    <header>
+      </header>
+      <main class="main">
+        <div class="bannerhome">
+      <h1>Bienvenido al simulador de Plazos Fijos</h1>
+      </div>
+      <section id="panelSimulador" class="clear">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-7" id="content-form">
+              <div class="header-content-inner">
+                <h1>Simulador de Plazo Fijo</h1>
+              </div>
+              <form id="simulador">
+                <div class="form-group">
+                  <label for="capitalaIvertir">Capital a Invertir:</label>
+                  <input type="number" class="form-control" id="capital" placeholder="1000"  min="1000" required/>
+                </div>
+                <div class="form-group">
+                  <label for="plazo">Plazo (en días):</label>
+                  <input type="number" min="30" max="365" class="form-control" id="duracion" placeholder="(Mínimo 30 días - Máximo 365 días)" required/>
+                </div>
+                <div class="checkbox" id="sectBank">
+                <p>Elija un banco.</p>
+                 <label> <input type="radio" name="banco" value="1" id="banco"> Santader</label>
+                 <label> <input type="radio" name="banco" value="2" id="banco"> BBVA </label>
+                 <label> <input type="radio" name="banco" value="3" id="banco"> Banco Nación </label>
+                </div>
+                <div class="form-group">
+                  <button onclick="calcular()" type="button" id="calc" value="Borrar" class="btn btn-primary">Calcular</button>
+                </div>
+            </form>
+            </div>
+            <div class="col-sm-5">
+              <div class="list">
+                <h2 class="title">Información Importante!</h2>
+                  <div class="container-list">
+                    <h3>ATENCIÓN: La tasa del plazo fijo informada en esta simulación es la establecida por la Com. "A" 7605 del BCRA. Si su tenencia en esta Entidad supera los $10.000.000 la tasa a asignar será de 69,50%</h3>
+                    <h4>Los depósitos en pesos y en moneda extranjera cuentan con la garantía de hasta $ 6.000.000. En las operaciones a nombre de dos o más personas, la garantía se prorrateará entre sus titulares. En ningún caso, el total de la garantía por persona y por depósito podrá exceder de $ 6.000.000, cualquiera sea el número de cuentas y/o depósitos. Ley 24.485, Decreto N° 540/95 y modificatorios y Com. "A" 2337 y sus modificatorias y complementarias. Se encuentran excluidos los captados a tasas superiores a la de referencia conforme a los límites establecidos por el Banco Central, los adquiridos por endoso y los efectuados por personas vinculadas a la entidad financiera.</h4>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> 
+      <section id="data" class="clear"> 
+        <div class="container">
+          <h2> Resultado:</h2>
+          <span id="calc_error"></span>
+        <table class="table" >
+          <thead>
+              <tr>
+                <th>Canal</th>
+                <th>Electrónico</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Plazo</td>
+                  <td class="dest" id="dias"></td>
+              </tr>
+              <tr>
+                  <td>Capital</td>
+                  <td class="dest" id="monto"></td>
+              </tr>
+              <tr>
+                  <td>Intereses ganados</td>
+                  <td class="dest" id="calc_interes"></td>
+              </tr>
+              <tr>
+                  <td>Monto total</td>
+                  <td class="dest" id="calc_result"></td>
+              </tr>
+              <tr>
+                  <td>TNA</td>
+                  <td class="dest" id="tna"></td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="form-group">
+        <button onclick="enviarcot()" type="button" id="enviar" value="Borrar" class="btn btn-primary">Enviar cotizacion</button>
+      </div>
+
+      </section>
+      </main>
+      <footer>
+               <div class="container">
+                  <p>&copy; 2023 . Alejo Yornet.</p>
+              </div>
+      </footer>
+      <script src="js/main.js"></script>
+</body>
+</html>
